@@ -82,9 +82,86 @@ function IdentifyFalsy(arr){
 
 배열을 입력받아, 중복된 요소가 제거된 새 배열을 반환하는 함수를 작성하세요.
 
+```javascript
+//실패한식 ㅋㅋㅋ
+function cut(a){
+for(let i=0;i<=a.length;i++){
+if(a[i]-a[i-1]===0){
+  a.splice(i,1);
+  return console.log(a);
+}
+}
+}
+
+
+function cut(a){
+for(let i=0;i<=a.length;i++){
+if(a.indexOf(i) !==-1 && a.lastIndexOf(i) !==-1){
+   a.splice(a.indexOf(i),1);
+   a.splice(a.lastIndexOf(i),1);
+   a.splice(a.indexOfi,1);
+   return console.log(a);
+  
+}
+
+}
+}
+
+//중복된 값을 아예 없애는 법
+function cut(x){
+  const arr=[];
+  for(let item of x){
+  if(x.indexOf(item)===x.lastIndexOf(item) && x.indexOf(item)!==-1){
+    arr.push(item);
+  }
+}
+return arr;
+}
+//중복된 값만 없내는 법
+const b=[1,2,3,4,3,3,5];
+const a=[4,2,8,9,2,4,4];
+
+function cut(x){
+  const arr=[];
+  for(let item of x){
+    if(x.indexOf(item) !== x.lastIndexOf(item)){
+      x.splice(x.lastIndexOf(item),1);
+      console.log(x);
+    }else{
+    arr.push(item);
+    console.log(arr);
+  }
+}
+return x;
+}
+
+function cut(x){
+  
+  for(let item of x){
+    if(x.indexOf(item) !== x.lastIndexOf(item)){
+      x.splice(x.lastIndexOf(item),1);
+    }
+}
+return x;
+}
+
+//선생님 답
+function removeDuplicates(arr){
+  const newArr = [];
+  for (let them of arr) {
+    if(!newArr.includes(item)){
+      newArr.push(item);
+    }
+  }
+  return newArr;
+}
+```
+
+
+
 ### 문제 5
 
-수 타입의 값으로만 이루어진 두 배열을 입력받아, 다음과 같이 동작하는 함수를 작성하세요.
+수 타입의 값으로만 이루어진 두 배열을 입력받아, 다음과 같이 동작하는 함수를 /작성하세요.
 - 두 배열의 같은 자리에 있는 요소를 더한 결과가 새 배열의 요소가 됩니다.
 - 만약 입력받은 두 배열의 길이가 갖지 않다면, 긴 배열에 있는 요소를 새 배열의 같은 위치에 포함시키세요.
 
@@ -92,6 +169,91 @@ function IdentifyFalsy(arr){
 ```
 addArray([1, 2, 3], [4, 5, 6, 7]) -> [5, 7, 9, 7]
 ```
+
+```javascript
+function plus(arr1,arr2){
+  const newArr=[];
+  if(arr1.length<=arr2.length)
+  for(let i=0; i<arr1.length;i++){
+    newArr.push(arr2[i] = arr1[i]+arr2[i]);
+    console.log(newArr);
+  } else if (arr1.length>arr2.length){for(let i=0; i<arr2.length;i++)       newArr.push(arr1[i] = arr2[i]+arr1[i];)
+    console.log(newArr);
+  }
+  return newArr;
+  }
+
+const a =[1,2,3];
+const b =[4,5,6,7,9,4,1];
+function plus(arr1,arr2){
+  const newArr=[];
+  if(arr1.length<=arr2.length){
+  for(let i=0; i<arr1.length;i++){
+    newArr.push(arr1[i]+arr2[i]);
+  } 
+  for(let i=arr1.length ; i<arr2.length; i++){
+  newArr.push(arr2[i]);
+  }
+  }
+  else if (arr1.length>arr2.length)
+  {for(let i=0; i<arr2.length;i++){
+    newArr.push(arr2[i]+arr1[i]);
+  }
+  for(let i=arr2.length ; i<arr1.length; i++){
+  newArr.push(arr1[i]);
+  }
+  }
+  return newArr;
+}
+
+
+function addArray(arr1,arr2){
+  const newArr = [];
+  if(arr2=>arr1){
+    newArr.push(arr2);
+    for(i=0;i<newArr.length;i++){
+  if(arr1.includes(newArr.indexOf(i))){
+    newArr[i] +=arr1[i];
+    console.log(newArr);
+  }
+    }
+  } else {
+    newArr.push(arr1);
+      for(i=0;i<newArr.length;i++){
+  if(arr2.includes(newArr.indexOf(i))){
+    newArr[i] +=arr2[i];
+    console.log(newArr);
+  }
+  
+  }
+  
+}
+```
+
+### 보너스문제
+
+reverse 함수를 만드세요.
+
+```javascript
+const arr1= [1,2,3,4,5];
+const arr2= ['a','b','c','d','e'];
+
+function reverse(arr){
+  const newArr=[];
+
+for(i=arr.length-1;0<=i;i--){
+  newArr.push(arr[i]);
+}
+  return newArr;
+}
+
+//slice() 배열이 복사됨
+function reverse(arr){
+  return arr.slice().reverse();
+}
+```
+
+
 
 ### 문제 6
 
@@ -102,9 +264,41 @@ addArray([1, 2, 3], [4, 5, 6, 7]) -> [5, 7, 9, 7]
 combination([1, 2, 3]); -> [[1, 2], [1, 3], [2, 3]]
 ```
 
+```javascript
+const a= [1,2,3,4,5];
+function combination(arr){
+  const newArray=[];
+  
+  for(let i=0;i<arr.length;i++){
+    for(let z=arr.length-1;0<=z;z--)
+    {if(arr[i]!==arr[z]&&arr[i]>arr[z]){
+      newArray.push([arr[i],arr[z]]);
+    }
+    }
+  }
+  return newArray;
+
+  }
+
+//선생님 답
+function combination(arr){
+  const newArr=[];
+  for (let i=0;i<arr.length; i++){
+    for(let j=i; j<arr.length; j++){
+      newArr.push([arr[i], arr[j]]);
+    }
+  }
+  return newArr;
+}
+```
+
+
+
 ### 문제 7
 
 '금액'과 '동전의 종류가 들어있는 배열'를 입력받아, 최소한의 동전을 사용해서 금액을 맞출 수 있는 방법을 출력하는 함수를 작성하세요.
+
+(단, 동전의 종류가 들어있는 배열에는 큰 동전부터 순서대로 들어있다고 가정합니다.)
 
 예:
 ```
@@ -118,6 +312,67 @@ coins(163, [100, 50, 10, 5, 1]);
 1
 ```
 
+```javascript
+const a = 570;
+const b= [100,50,10,5,1];
+
+function coins(amount, coinTypes){
+  let currentAmount = amount;
+  for(let ct of coinTypes){
+    //정수 나눗셈 방법
+    const result = Math.floor(currentAmount / ct);
+    
+    // 코인타입을 result만큼 출력
+   for(let i=0; i<result; i++){
+     console.log(ct);
+   }
+    
+    //빼기
+     const reduce=ct*result;
+     currentAmount=currentAmount-reduce;
+  }
+}
+
+function coint2(amount, coinTypes){
+  let currentAmount = amount;
+  for(let ct of coinTypes){
+    while(currentAmount - ct >0){
+      console.log(ct);
+      currentAmount -=ct;
+    }
+  }
+}
+```
+
+
+
 ### 문제 8
 
 수 타입의 값만 들어있는 배열을 입력받아, 해당 배열을 오름차순 정렬하는 함수를 작성하세요. (`Array.prototype.sort`를 사용하지 않고 작성해보세요. [선택 정렬](https://ko.wikipedia.org/wiki/%EC%84%A0%ED%83%9D_%EC%A0%95%EB%A0%AC)을 참고하세요.)
+
+```javascript
+const test=[5,2,4,1,3];
+
+function sort(arr){
+  for(let i=0; i<arr.length; i++){
+    let min = arr[i];
+    let minIndex = i;
+    for(let j = i; j < arr.length; j++){
+      //지금 탐색중인 값이 최소값인지 검사하기
+     if(min>arr[j]){
+      //최소값과 인덱스를 기억하기 
+     min=arr[j];
+     minIndex = j;
+     }
+    }
+    //자리바꾸기
+    // const temp = arr[minIndex];
+    // arr[minIndex] =arr[i];
+    // arr[i] = temp;
+    
+    [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+  }
+  
+}
+```
+

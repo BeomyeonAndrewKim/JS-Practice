@@ -3,11 +3,19 @@
 두 문자열을 입력받아, 대소문자를 구분하지 않고(case insensitive) 두 문자열이 동일한지를 반환하는 함수를 작성하세요.
 
 예:
-```
+```javascript
 insensitiveEqual('hello', 'hello'); -> true
 insensitiveEqual('hello', 'Hello'); -> true
 insensitiveEqual('hello', 'world'); -> false
 ```
+
+```javascript
+function insensitiveCompare(str1,str2){
+  return str1.toLowerCase() === str2.toLowerCase();
+}
+```
+
+
 
 ### 문제 2
 
@@ -19,18 +27,77 @@ leftPad('hello', 8); -> '   hello'
 leftPad('hello', 3); -> 'hello'
 ```
 
+```javascript
+const a='hello';
+const b='8';
+function leftPad(str,num){
+  if(str.length<num){
+    var blank = " ";
+    return blank.repeat(num-str.length)+str;
+  } else{
+    return str;
+  }
+}
+
+
+```
+
+
+
 ### 문제 3
 
 문자열을 입력받아, 문자열 안에 들어있는 모든 모음(a, e, i, o, u)의 갯수를 반환하는 함수를 작성하세요.
+
+```javascript
+
+function returnA(str){
+  var num=0;
+  for (let item of str){
+  if(item.includes('a') || item.includes('e') ||item.includes('i') ||item.includes('o') ||item.includes('u')){
+    num=num+1;
+    }
+    
+  }
+  return num;
+}
+  
+const string="umbrellaa";
+returnA(string);
+```
+
+
 
 ### 문제 4
 
 문자열을 입력받아, 해당 문자열에 포함된 문자의 종류와 갯수를 나타내는 객체를 반환하는 함수를 작성하세요.
 
 예:
-```
+```javascript
 countChar('tomato'); -> {t: 2, o: 2, m: 1, a: 1}
 ```
+
+```javascript
+var tomato='tomato';
+
+function countChar(str){
+  var obj = {};
+  for(let item of str){
+    if(obj[item] === undefined){
+       obj[item] = 0;
+    } 
+    if(str.includes(item)){
+      obj[item] += 1;
+    }
+  }
+  return obj;
+  }
+
+countChar(tomato);
+
+
+```
+
+
 
 ### 문제 5
 

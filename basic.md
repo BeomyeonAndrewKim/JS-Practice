@@ -373,13 +373,13 @@ for(let i=0; i <10; i++){
 function fibo(n){
   let x= 0;
 let y= 1;
-let sum;
+
   //n === 1 이면 한 단계도 실행하지 않는다.
   //n === 2 이면 한 단계 실행한다.
   //n === 3 이면 두 단계 실행한다.
   // ...
   for(let i = 0; i<n; i++){
-    sum = x+y;
+    const sum = x+y;
     x = y;
     y = sum;
 
