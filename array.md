@@ -83,58 +83,24 @@ function IdentifyFalsy(arr){
 배열을 입력받아, 중복된 요소가 제거된 새 배열을 반환하는 함수를 작성하세요.
 
 ```javascript
-//실패한식 ㅋㅋㅋ
-function cut(a){
-for(let i=0;i<=a.length;i++){
-if(a[i]-a[i-1]===0){
-  a.splice(i,1);
-  return console.log(a);
-}
-}
-}
-
-
-function cut(a){
-for(let i=0;i<=a.length;i++){
-if(a.indexOf(i) !==-1 && a.lastIndexOf(i) !==-1){
-   a.splice(a.indexOf(i),1);
-   a.splice(a.lastIndexOf(i),1);
-   a.splice(a.indexOfi,1);
-   return console.log(a);
-  
-}
-
-}
-}
-
-//중복된 값을 아예 없애는 법
-function cut(x){
-  const arr=[];
-  for(let item of x){
-  if(x.indexOf(item)===x.lastIndexOf(item) && x.indexOf(item)!==-1){
-    arr.push(item);
-  }
-}
-return arr;
-}
-//중복된 값만 없내는 법
+//새 배열 그대로 복사 후 중복된 값 지우기
 const b=[1,2,3,4,3,3,5];
 const a=[4,2,8,9,2,4,4];
 
-function cut(x){
-  const arr=[];
-  for(let item of x){
-    if(x.indexOf(item) !== x.lastIndexOf(item)){
-      x.splice(x.lastIndexOf(item),1);
-      console.log(x);
-    }else{
-    arr.push(item);
-    console.log(arr);
+function cut(arr){
+  var newArr=[];
+  var newArr=arr.slice();
+  console.log(newArr);
+  for(let item of arr){
+    if(newArr.indexOf(item)!==newArr.lastIndexOf(item)){
+      newArr.splice(newArr.lastIndexOf(item),1);
+      console.log(newArr);
+    }
   }
-}
-return x;
+  return newArr;
 }
 
+///for...of 활용
 function cut(x){
   
   for(let item of x){
@@ -145,7 +111,7 @@ function cut(x){
 return x;
 }
 
-//선생님 답
+//강사님 답
 function removeDuplicates(arr){
   const newArr = [];
   for (let them of arr) {
@@ -228,6 +194,22 @@ function addArray(arr1,arr2){
   }
   
 }
+  
+  //강사님 답
+ function addArray(arr1, arr2) {
+  const newArr = [];
+  const longArr = arr1.length > arr2.length ? arr1 : arr2;
+  const shortArr = arr1.length > arr2.length ? arr2 : arr1;
+  
+  for (let i = 0; i < longArr.length; i++) {
+    newArr.push(longArr[i]);
+    if (shortArr[i] !== undefined) {
+      newArr[i] += shortArr[i];
+    }
+  }
+  
+  return newArr;
+}
 ```
 
 ### 보너스문제
@@ -246,6 +228,16 @@ for(i=arr.length-1;0<=i;i--){
 }
   return newArr;
 }
+const Array1=[1,2,3,4,5];
+const newArr=[];
+function reverse(arr){
+  for(let item of arr){
+    newArr.push(arr[(arr.length-1)-arr.indexOf(item)]);
+  }
+  return newArr;
+}
+
+reverse(Array1);
 
 //slice() 배열이 복사됨
 function reverse(arr){

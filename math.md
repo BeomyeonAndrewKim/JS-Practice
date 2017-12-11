@@ -24,9 +24,41 @@ ceilBy5(37); -> 40
 
 임의의 HTML 색상 코드를 반환하는 함수를 작성하세요.
 
+```javascript
+function rgbCode(){
+  var num='0123456789abcdef'
+  var newStr='#';
+  
+  for(i=1;i<=6;i++){
+    var numRan=(num[Math.floor(Math.random()*16)]);
+    newStr +=numRan;
+  }
+  return newStr;
+}
+```
+
+
+
 ### 문제 6
 
 양수를 입력받아, 그 수만큼의 길이를 갖는 임의의 문자열을 반환하는 함수를 작성하세요.
+
+```javascript
+function numString(num){
+  var alphabet='abcdefghijklmnopqrstuvwxyz';
+  var newStr ='';
+  for(i=0;i<num;i++){
+    var numRan=(alphabet[Math.floor(Math.random()*26)]);
+    newStr +=numRan;
+  }  
+return newStr;
+}
+
+numString(7);
+
+```
+
+
 
 ### 문제 7
 
