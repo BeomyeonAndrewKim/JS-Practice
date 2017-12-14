@@ -521,6 +521,34 @@ split('Hello World', ' '); -> ['Hello', 'World']
 split('let,const,var', ',') -> ['let', 'const', 'var']
 ```
 
+```javascript
+const array1='Hello!World!World!World';
+const brk1='!';
+
+function split1(str,brk){
+  var newArr=[];
+  for(let item of str){
+      if(item===brk){
+      newArr.push(str.slice(0,str.indexOf(item)));
+      str=str.slice(str.indexOf(item)+1,str.length);
+    } 
+  }
+  newArr.push(str.slice());
+  if(brk===''){
+    newArr=[];
+    for(let item of str){
+      newArr.push(item);
+    }
+  }
+  return newArr;
+}
+  
+
+split1(array1,brk1);
+```
+
+
+
 ### 문제 16
 
 2진수를 표현하는 문자열을 입력받아, 그 문자열이 나타내는 수 타입의 값을 반환하는 함수를 작성하세요. (`parseInt`를 사용하지 말고 작성해보세요.)

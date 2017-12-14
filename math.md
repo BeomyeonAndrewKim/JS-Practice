@@ -2,9 +2,31 @@
 
 양수를 입력받아 이 수를 반지름으로 하는 원의 넓이를 반환하는 함수를 작성하세요.
 
+```javascript
+function areaCircle(num){
+  var answer;
+  if(num>0){
+    answer=Math.pow(num,2)*Math.PI;
+  } else{
+    throw new Error(`${num} is not a positive number`);
+  }
+  return answer;
+}
+```
+
+
+
 ### 문제 2
 
 두 정수 `min`, `max` 를 입력받아, `min` 이상 `max` 미만인 임의의 정수를 반환하는 함수를 작성하세요.
+
+```javascript
+function ranNum(num1,num2){
+ return Math.floor(Math.random()*num2)||Math.floor(Math.random()*num1+1);
+}
+```
+
+
 
 ### 문제 3
 
@@ -15,6 +37,27 @@
 ceilBy5(32); -> 35
 ceilBy5(37); -> 40
 ```
+
+```javascript
+function ceilBy5(num){
+  var str=num.toString();
+  if(Number(str[str.length-1])<5 && 0<Number(str[str.length-1]) ){
+    var newNum=5-Number(str[str.length-1]);
+    var answer=num+newNum;
+  } else if(Number(str[str.length-1])===0||Number(str[str.length-1])===5){
+    var answer=num;} else{
+    var newNum=10-Number(str[str.length-1]);
+    var answer=num+newNum;
+  }
+  return answer;
+  
+}
+
+
+ceilBy5(8);
+```
+
+
 
 ### 문제 4
 
