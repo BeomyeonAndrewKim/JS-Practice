@@ -39,6 +39,14 @@ function leftPad(str,num){
   }
 }
 
+//강사님 풀이
+function leftPad(s, n) {
+  if (s.length < n) {
+    return ' '.repeat(n - s.length) + s;
+  } else {
+    return s;
+  }
+}
 
 ```
 
@@ -60,9 +68,22 @@ function returnA(str){
   }
   return num;
 }
-  
+
+//강사님 풀이
+function countVowel(str) {
+  let count = 0;
+  for (let c of str) {
+    if (['a', 'e', 'i', 'o', 'u'].includes(c)) {
+      count++;
+    }
+  }
+  return count;
+}
+
 const string="umbrellaa";
 returnA(string);
+
+
 ```
 
 
@@ -92,6 +113,20 @@ function countChar(str){
   return obj;
   }
 
+//강사님 풀이
+function countChar(str) {
+  const obj = {};
+  for (let c of str) {
+    if (obj[c] === undefined) {
+      obj[c] = 1;
+    } else {
+      obj[c]++;
+    }
+  }
+  return obj;
+}
+
+countChar('hello');
 countChar(tomato);
 
 
@@ -248,27 +283,34 @@ function emailID(str){
 //강사님 풀이
 //루프
 
-function hideId(email){
-  let numOfId=0;
+// 루프
+function hideId(email) {
+  let numOfId = 0;
   let atAppeared = false;
   let domain = '';
-  for(let c of email){
-    if(c === '@'){
+  for (let c of email) {
+    if (c === '@') {
       atAppeared = true;
-    } else if(!atAppeared){
+    } else if (!atAppeared) {
       numOfId++;
     } else {
       domain += c;
     }
   }
-//split
-function hideId2(email){
-  const arr=email.split('@');
-  return '*'.repeat(arr[0].length) + '@'+arr[1];
+  
+  let result = '';
+  for (let i = 0; i < numOfId; i++) {
+    result += '*';
+  }
+  result += '@';
+  result += domain;
+  return result;
 }
-function hideId3(email){
-  const [id, domain]=email.split('@');
-  return '*'.repeat(id.length) + '@'+domain;
+
+// split, repeat
+function hideId2(email) {
+  const [id, domain] = email.split('@');
+  return '*'.repeat(id.length) + '@' + domain;
 }
 
 const email='abcde@gmail.com';
@@ -361,6 +403,20 @@ function longest(str){
   }
  return arr[0];
 }
+
+//강사님 풀이
+// 문자열을 입력받아, 문자열 안에 들어있는 단어 중 가장 긴 단어를 반환하는 함수를 작성하세요. (문자열에 개행이 없다고 가정합니다.)
+
+function longestWord(str) {
+  const arr = str.split(' ');
+  let longest = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i].length > longest.length) {
+      longest = arr[i];
+    }
+  }
+  return longest;
+}
 var string = 'fast campus frontend development'
 longest(string);
 ```
@@ -390,7 +446,13 @@ function newString(str,num){
   return newStr;
 }
 //강사님 풀이
-
+function firstChars(s, n) {
+  let newStr = '';
+  for (let i = 0; i < n && i < s.length; i++) {
+    newStr += s[i];
+  }
+  return newStr;
+}
 
 var string ='hello'
 newString(string, 3);

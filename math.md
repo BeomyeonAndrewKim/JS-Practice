@@ -20,6 +20,27 @@ ceilBy5(37); -> 40
 
 배열을 입력받아, 요소들의 순서를 뒤섞은 새 배열을 반환하는 함수를 작성하세요.
 
+```javascript
+function ranArr(arr){
+  var newArr=[];
+  let arr2 = arr.slice();
+  for(let i=0;i< arr.length; i++){
+    console.log(i, arr.length);
+    var a=arr2[parseInt(Math.random()*arr2.length)];
+    newArr.push(a);
+    arr2.splice(arr2.indexOf(a),1);
+    console.log(arr2);
+  }
+  return newArr;
+}
+
+var Array=[1,'a',4,3, 3, 3,['가','나','다'],3];
+ranArr(Array);
+
+```
+
+
+
 ### 문제 5
 
 임의의 HTML 색상 코드를 반환하는 함수를 작성하세요.
@@ -34,6 +55,24 @@ function rgbCode(){
     newStr +=numRan;
   }
   return newStr;
+}
+
+//강사님 풀이
+function randomHtmlColor() {
+  const availableChars = '0123456789abcdef';
+  let newStr = '#';
+  
+  for (let i = 0; i < 6; i++) {
+    newStr += availableChars[Math.floor(Math.random() * 16)];
+  }
+  
+  return newStr;
+}
+
+function randomHtmlColor2() {
+  const value = Math.random() * 256 * 256 * 256;
+  return '#' + Math.floor(value).toString(16);
+  // 버그!
 }
 ```
 
@@ -54,6 +93,18 @@ function numString(num){
 return newStr;
 }
 
+//강사님 풀이
+
+const str = '0123456789abcdefABCDEF!@#$%^&*()';
+
+function randomString(n) {
+  let newStr = '';
+  for (let i = 0; i < n; i++) {
+    const randomIndex = Math.floor(Math.random() * str.length);
+    newStr += str[randomIndex];
+  }
+  return newStr;
+}
 numString(7);
 
 ```
