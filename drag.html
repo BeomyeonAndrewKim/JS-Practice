@@ -33,22 +33,29 @@
         // 드래그 앤 드롭
         let dragging = false;
         const box = document.querySelector('.box');
-        var rect = box.getBoundingClientRect();
+        var smallBox = box.getBoundingClientRect();
         box.addEventListener('mousedown', e => {
             console.log('mousedown');
             dragging = true;
             //클릭이 일어난 순간에 상대적 위치 저장
         });
-        box.addEventListener('mouseup', e => {
+        document.addEventListener('mouseup', e => {
             console.log('mouseup');
             dragging = false;
         });
-        box.addEventListener('mousemove', e => {
+        document.addEventListener('mousemove', e => {
             console.log('mousemove');
             if (dragging) {
                 //상대적 위치를 유지하며 박스 위치 변경
-                box.style.left = `${e.clientX-rect.left}px`;
-                box.style.top = `${e.clientY-rect.top}px`;
+                const largeBox = document.querySelector('.outer').getBoundingClientRect();
+                let resultX = Math.min(
+                    Math.max(0, e.clientX - smallBox.left),
+                    largeBox.width - smallBox.width);
+                let resultY = Math.min(
+                    Math.max(0, e.clientY - smallBox.top),
+                    largeBox.height - smallBox.height);
+                box.style.left = `${resultX}px`;
+                box.style.top = `${resultY}px`;
             }
         });
     </script>
