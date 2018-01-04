@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="before-login">
+        <span>로그인된 사용자가 없습니다.</span>
+        <button class="login">로그인</button>
+    </div>
+    <div class="name"></div>
+    <div class="email"></div>
+    <img src="" alt="" class="profile">
+    <ul class="repository">
+    </ul>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC1ZTOkhSHIUV-9Dm25AXzKy6Jy65Wp8-0",
+            authDomain: "authorization-test-3b0de.firebaseapp.com",
+            databaseURL: "https://authorization-test-3b0de.firebaseio.com",
+            projectId: "authorization-test-3b0de",
+            storageBucket: "authorization-test-3b0de.appspot.com",
+            messagingSenderId: "1077622171220"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script>
+        var provider = new firebase.auth.GithubAuthProvider();
+        document.querySelector('.login').addEventListener('click', async e => {
+            const result = await firebase.auth().signInWithPopup(provider);
+            // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+            console.log(token);
+            console.log(user);
+            document.querySelector('.name').textContent = user.displayName;
+            document.querySelector('.email').textContent = user.email;
+            document.querySelector('.profile').src = user.photoURL;
+            document.querySelector('.before-login').classList.add('hidden');
+            //curl https://api.github.com/user/repos?access_token=OAUTH-TOKEN
+            const res = await fetch(`https://api.github.com/user/repos?access_token=${token}`);
+            const repos = await res.json();
+            console.log(repos);
+            repos.forEach(e => {
+                const list = document.createElement('li');
+                document.querySelector('.repository').appendChild(list).textContent = e.full_name;
+            })
+        })
+    </script>
+</body>
+
+</html>

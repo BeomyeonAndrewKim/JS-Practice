@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="debounce">
+    <input type="text" id="throttle">
+    <div>
+    </div>
+    <script>
+        function debounce(cb, time) {
+            let timeoutId;
+            return function() {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+                timeoutId = setTimeout(() => {
+                    cb();
+                    timeoutId = null;
+                }, time)
+            }
+        }
+
+        function throttle(cb, time) {
+            let throttled = false;
+            let timeoutId;
+            return function() {
+                if (!timeoutId) {
+                    timeoutId = setTimeout(() => {
+                        throttled = false;
+                        timeoutId = null;
+                    }, time);
+                }
+                if (!throttled) {
+                    cb();
+                }
+                throttled = true;
+            }
+        }
+
+        const debounceListener = debounce(() => {
+            alert('hello');
+        }, 2000);
+        document.querySelector('#debounce').addEventListener('input', debounceListener);
+        document.querySelector('#throttle').addEventListener('keydown', e => {
+            console.log(e);
+            console.log(e.currentTarget.value);
+            if (e.key === 'Enter') {
+                throttledappendChat();
+            }
+        })
+
+        const throttledappendChat = throttle(function() {
+            const chatInput = document.querySelector('#throttle');
+            const Pel = document.createElement('p');
+            Pel.textContent = chatInput.value;
+            document.querySelector('div').appendChild(Pel);
+            chatInput.value = '';
+        }, 3000)
+    </script>
+</body>
+
+</html>
