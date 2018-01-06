@@ -23,6 +23,7 @@
     <img src="" alt="" class="profile">
     <ul class="repository">
     </ul>
+    <input type="text" class="new-todo">
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -59,6 +60,19 @@
                 const list = document.createElement('li');
                 document.querySelector('.repository').appendChild(list).textContent = e.full_name;
             })
+            firebase.database().ref('todos').on('value', function(snapshot) {
+                console.log(snapshot.val());
+            });
+        })
+        document.querySelector('.new-todo').addEventListener('keydown', async e => {
+            if (e.key === 'Enter') {
+                // 입력 필드에 들어있는 값을 파이어베이스에 번송
+                firebase.database().ref('todos').push({
+                        content: e.currentTarget.value
+                    })
+                    // 입력 필드를 비워주기
+                e.currentTarget.value = '';
+            }
         })
     </script>
 </body>
