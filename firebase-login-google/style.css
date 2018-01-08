@@ -1,0 +1,95 @@
+    @import url("/reset.css");
+    @import url("/font/font.css");
+    .container {
+      margin: auto;
+      display: none;
+      flex-direction: column;
+      align-items: initial;
+      max-width: 300px;
+      height: auto;
+      border: 1px solid #eeeeee;
+    }
+    
+    .input-box {
+      text-align: center;
+      padding: 15px;
+      background: moccasin;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+      line-height: 2.5rem;
+    }
+    
+    fieldset button {
+      margin-left: -5px;
+      font-size: 1.0rem;
+      line-height: 1.4rem;
+      background: #dbd6d6;
+      border: none;
+      vertical-align: top;
+    }
+    
+    fieldset input {
+      font-size: 1.0rem;
+      line-height: 1.45rem;
+      border: none;
+    }
+    
+    .complete {
+      text-decoration-line: line-through;
+      background: rgb(152, 207, 186) !important;
+    }
+    
+    .complete::before {
+      font-family: 'fontello';
+      content: '\e801';
+      display: inline-block;
+      position: absolute;
+      left: 2px;
+    }
+    
+    #todo-list {
+      text-align: initial;
+      position: relative;
+    }
+    
+    #todo-list>div {
+      align-items: baseline;
+      font-size: 1.2rem;
+      line-height: 2.0rem;
+      position: relative;
+      padding-left: 20px;
+      background: #EDEDED;
+    }
+    
+    #todo-list>div:hover {
+      background: #ddcccc;
+    }
+    
+    #todo-list>div>div {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding-right: 10px;
+    }
+    
+    #todo-list>div>div:hover {
+      color: red;
+    }
+    
+    #todo-list>div>div::before {
+      font-family: 'fontello';
+      content: '\e800';
+    }
+    
+    .todo-list--loading::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: black;
+    }
