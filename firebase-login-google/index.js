@@ -31,9 +31,14 @@ inputEl.addEventListener("keypress", function(event) {
     addBtn.click();
   }
 });
+let uid;
+let snapshot;
+let todos;
+let todosObject;
+let todoEl;
 
 document.querySelector('#add-button').addEventListener('click', async e => {
-  const itemEl = document.createElement('div');
+  todoEl = document.createElement('div');
   if (inputEl.value === '') {
     return false;
   } else {
@@ -43,35 +48,18 @@ document.querySelector('#add-button').addEventListener('click', async e => {
       title: inputEl.value,
       complete: false
     });
-    itemEl.textContent = inputEl.value;
-    listEl.appendChild(itemEl);
+    todoEl.textContent = inputEl.value;
+    listEl.appendChild(todoEl);
     listEl.classList.remove('todo-list--loading');
   } //text빈 상태로 add키 작동하지 않게 하기
   inputEl.value = '';
-
-
-
-  itemEl.addEventListener('click', e => {
-    if (itemEl.classList.contains('todo-list__item--complete')) {
-      itemEl.classList.remove('todo-list__item--complete');
-
-    } else {
-      itemEl.classList.add('todo-list__item--complete');
-    }
-  })
-
-  const removeButtonEl = document.createElement('div');
-  itemEl.appendChild(removeButtonEl);
-
-  removeButtonEl.addEventListener('click', e => {
-    listEl.removeChild(itemEl);
-  })
+  refreshTodos();
 })
 async function refreshTodos() {
-  const uid = firebase.auth().currentUser.uid;
-  const snapshot = await firebase.database().ref(`/users/${uid}/todos`).once('value');
-  const todos = snapshot.val();
-  const todosObject = Object.entries(todos);
+  uid = firebase.auth().currentUser.uid;
+  snapshot = await firebase.database().ref(`/users/${uid}/todos`).once('value');
+  todos = snapshot.val() || {};
+  todosObject = Object.entries(todos);
   listEl.innerHTML = '';
   for (let [todoId, todo] of todosObject) {
     let todoEl = document.createElement('div');
@@ -93,5 +81,4 @@ async function refreshTodos() {
 
     listEl.appendChild(todoEl);
   }
-  listEl.classList.remove('todo-list--loading');
 }
