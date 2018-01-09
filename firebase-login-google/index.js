@@ -26,8 +26,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
-inputEl.addEventListener("keyup", function(event) {
-  event.preventDefault();
+inputEl.addEventListener("keypress", function(event) {
   if (event.keyCode === 13) {
     addBtn.click();
   }
@@ -73,29 +72,27 @@ async function refreshTodos() {
   const snapshot = await firebase.database().ref(`/users/${uid}/todos`).once('value');
   const todos = snapshot.val();
   const todosObject = Object.entries(todos);
-  const todosKeys = Object.keys(todos);
   listEl.innerHTML = '';
   for (let [todoId, todo] of todosObject) {
     let todoEl = document.createElement('div');
     todoEl.textContent = todo.title;
     if (todo.complete) todoEl.classList.add('complete');
     listEl.appendChild(todoEl);
-    todoEl.addEventListener('click', e => {
-      console.log(todosKeys);
+    todoEl.addEventListener('click', async e => {
       if (todoEl.classList.contains('complete')) {
         todoEl.classList.remove('complete');
-        firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: false })
+        await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: false })
       } else {
         todoEl.classList.add('complete');
-        firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: true })
+        await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: true })
       }
     })
     const removeButtonEl = document.createElement('div');
     todoEl.appendChild(removeButtonEl);
 
-    removeButtonEl.addEventListener('click', e => {
+    removeButtonEl.addEventListener('click', async e => {
       listEl.removeChild(todoEl);
-      firebase.database().ref(`/users/${uid}/todos/${todoId}`).remove();
+      await firebase.database().ref(`/users/${uid}/todos/${todoId}`).remove();
       e.stopPropagation();
     })
   }
