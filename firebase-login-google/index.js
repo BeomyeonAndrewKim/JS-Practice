@@ -32,7 +32,6 @@ inputEl.addEventListener("keyup", function(event) {
     addBtn.click();
   }
 });
-//input.text Enter키 작동
 
 document.querySelector('#add-button').addEventListener('click', async e => {
   const itemEl = document.createElement('div');
