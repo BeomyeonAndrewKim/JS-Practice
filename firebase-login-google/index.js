@@ -52,11 +52,11 @@ document.querySelector('#add-button').addEventListener('click', async e => {
 
 
   itemEl.addEventListener('click', e => {
-    if (itemEl.classList.contains('complete')) {
-      itemEl.classList.remove('complete');
+    if (itemEl.classList.contains('todo-list__item--complete')) {
+      itemEl.classList.remove('todo-list__item--complete');
 
     } else {
-      itemEl.classList.add('complete');
+      itemEl.classList.add('todo-list__item--complete');
     }
   })
 
@@ -76,25 +76,22 @@ async function refreshTodos() {
   for (let [todoId, todo] of todosObject) {
     let todoEl = document.createElement('div');
     todoEl.textContent = todo.title;
-    if (todo.complete) todoEl.classList.add('complete');
-    listEl.appendChild(todoEl);
-    todoEl.addEventListener('click', async e => {
-      if (todoEl.classList.contains('complete')) {
-        todoEl.classList.remove('complete');
-        await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: false })
-      } else {
-        todoEl.classList.add('complete');
-        await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: true })
-      }
-    })
+    //todo.complete에 따라서 클래스 붙여주기
+    if (todo.complete) todoEl.classList.add('todo-list__item--complete');
     const removeButtonEl = document.createElement('div');
     todoEl.appendChild(removeButtonEl);
-
     removeButtonEl.addEventListener('click', async e => {
-      listEl.removeChild(todoEl);
-      await firebase.database().ref(`/users/${uid}/todos/${todoId}`).remove();
       e.stopPropagation();
+      await firebase.database().ref(`/users/${uid}/todos/${todoId}`).remove();
+      refreshTodos();
     })
-  }
+    todoEl.addEventListener('click', async e => {
+      //complete를 바꿔서 데이터베이스 업데이트
+      await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: !todo.complete })
+      refreshTodos();
+    })
 
+    listEl.appendChild(todoEl);
+  }
+  listEl.classList.remove('todo-list--loading');
 }

@@ -36,12 +36,12 @@
       border: none;
     }
     
-    .complete {
+    .todo-list__item--complete {
       text-decoration-line: line-through;
       background: rgb(152, 207, 186) !important;
     }
     
-    .complete::before {
+    .todo-list__item--complete::before {
       font-family: 'fontello';
       content: '\e801';
       display: inline-block;
