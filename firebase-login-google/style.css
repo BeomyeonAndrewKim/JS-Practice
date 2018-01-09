@@ -72,6 +72,7 @@
       top: 0;
       right: 0;
       padding-right: 10px;
+      z-index: 1;
     }
     
     #todo-list>div>div:hover {
@@ -83,6 +84,22 @@
       content: '\e800';
     }
     
+    #todo-list>div>div>div {
+      position: absolute;
+      top: 0;
+      right: 100%;
+      padding-right: 10px;
+      z-index: 2;
+    }
+    
+    #todo-list>div>div>div:hover {
+      color: bisque;
+    }
+    
+    #todo-list>div>div>div::before {
+      content: 'R';
+    }
+    
     .todo-list--loading::after {
       content: "";
       display: block;
@@ -92,4 +109,121 @@
       top: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.5);
+    }
+    /* Modal */
+    /* Modal-box */
+    
+    .modal-box {
+      width: 500px;
+      height: 200px;
+      background: #ffffff;
+      border-radius: 7px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      display: none;
+    }
+    /* modal-title */
+    
+    .modal-title {
+      display: block;
+      padding: 17px;
+      font-size: 25px;
+    }
+    
+    .exit-icon {
+      display: inline-block;
+      cursor: pointer;
+      position: absolute;
+      right: 2%;
+    }
+    
+    .exit-icon:hover {
+      color: lightgray;
+    }
+    /* Modal-Message */
+    
+    .message {
+      padding: 25px 17px;
+      font-size: 20px;
+      display: block;
+      color: #000;
+      border-top: 0.5px solid lightgray;
+      border-bottom: 0.5px solid lightgray;
+    }
+    /* Modal-Buttons */
+    
+    .modal-btns {
+      position: absolute;
+      margin: 10px 0px;
+      right: 2%;
+    }
+    
+    .modal-btns button,
+    .modal-on {
+      font-size: 20px;
+      padding: 8px;
+      border-radius: 5px;
+      color: white;
+    }
+    
+    .exit {
+      background: gray;
+    }
+    
+    .confirm,
+    .modal-on {
+      background: blue;
+    }
+    /* modal clicked */
+    
+    .active {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+      animation: topDown 0.3s;
+    }
+    
+    .active-off {
+      transform: translateY(-30%);
+      opacity: 0;
+      animation: downTop 0.3s;
+    }
+    
+    @keyframes topDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes downTop {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-30%);
+      }
+    }
+    
+    .modal-bg {
+      background: black;
+      position: absolute;
+      opacity: 0.2;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      transition: background 1s;
     }
