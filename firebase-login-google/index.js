@@ -110,6 +110,9 @@ async function refreshTodos() {
       document.querySelector('.exit-icon').addEventListener('click', e => {
         modalOff();
       })
+      document.getElementById('todo-revise').addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) document.querySelector('.confirm').click();
+      });
       document.querySelector('.confirm').addEventListener('click', async e => {
         e.stopPropagation();
         await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ title: document.getElementById('todo-revise').value });
