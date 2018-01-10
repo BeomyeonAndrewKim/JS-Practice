@@ -34,6 +34,7 @@ async function refreshImages() {
     .once('value');
   const imagesData = snapshot.val() || {};
   keys = Object.keys(imagesData);
+  console.log(keyStack, keys);
   const imagesDataObject = Object.values(imagesData).slice(0, IMAGE_PER_PAGE);;
   //실시간 데이터베이스에서 이미지 정보 가져오기
   //각 이미지를 표시해주기
