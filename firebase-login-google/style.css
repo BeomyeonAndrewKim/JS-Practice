@@ -67,7 +67,7 @@
       background: #ddcccc;
     }
     
-    #todo-list>div>div {
+    .remove {
       position: absolute;
       top: 0;
       right: 0;
@@ -75,28 +75,31 @@
       z-index: 1;
     }
     
-    #todo-list>div>div:hover {
+    .remove:hover {
       color: red;
     }
     
-    #todo-list>div>div::before {
+    .remove::before {
       font-family: 'fontello';
       content: '\e800';
+      display: inline-block;
     }
     
-    #todo-list>div>div>div {
+    .revise {
       position: absolute;
       top: 0;
-      right: 100%;
-      padding-right: 10px;
+      bottom: 0;
+      margin: auto 0;
+      right: 12%;
       z-index: 2;
     }
     
-    #todo-list>div>div>div:hover {
+    .revise:hover {
       color: bisque;
     }
     
-    #todo-list>div>div>div::before {
+    .revise::before {
+      display: inline-block;
       content: 'R';
     }
     
@@ -144,9 +147,9 @@
     .exit-icon:hover {
       color: lightgray;
     }
-    /* Modal-Message */
+    /* todo-revise */
     
-    .message {
+    #todo-revise {
       padding: 25px 17px;
       font-size: 20px;
       display: block;

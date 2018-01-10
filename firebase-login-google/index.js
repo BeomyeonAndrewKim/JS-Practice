@@ -58,12 +58,15 @@ async function refreshTodos() {
     todoEl.textContent = todo.title;
     //remove 버튼 추가해주기
     const removeButtonEl = document.createElement('div');
+    removeButtonEl.classList.add('remove')
     todoEl.appendChild(removeButtonEl);
+
     //todo.complete에 따라서 클래스 붙여주기
     if (todo.complete) todoEl.classList.add('todo-list__item--complete');
     //수정 버튼 추가해주기
     const reviseButtonEl = document.createElement('div');
-    removeButtonEl.appendChild(reviseButtonEl);
+    reviseButtonEl.classList.add('revise')
+    todoEl.appendChild(reviseButtonEl);
     //remove 버튼 클릭시 작동하기
     removeButtonEl.addEventListener('click', async e => {
         e.stopPropagation();
@@ -86,12 +89,17 @@ async function refreshTodos() {
         modalSelector.classList.remove('modal-bg');
       }, 300);
     }
-    reviseButtonEl.addEventListener('click', e => {
+    reviseButtonEl.addEventListener('click', async e => {
       //Modal
+      e.stopPropagation();
 
       modalBox.classList.add('active');
       modalBox.classList.remove('active-off');
       modalSelector.classList.add('modal-bg');
+      let snapshotId = await firebase.database().ref(`/users/${uid}/todos/${todoId}`).once('value')
+      let todoIdval = snapshotId.val();
+      document.getElementById('todo-revise').value = todoIdval.title;
+
 
       modalBox.querySelector('.exit').addEventListener('click', e => {
         modalOff();
@@ -103,7 +111,9 @@ async function refreshTodos() {
         modalOff();
       })
       document.querySelector('.confirm').addEventListener('click', async e => {
+        e.stopPropagation();
         await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ title: document.getElementById('todo-revise').value });
+        refreshTodos();
         modalOff();
       })
     })
