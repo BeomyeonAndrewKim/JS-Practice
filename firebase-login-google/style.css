@@ -2,10 +2,10 @@
     @import url("/font/font.css");
     .container {
       margin: auto;
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: initial;
-      max-width: 300px;
+      max-width: 60%;
       height: auto;
       border: 1px solid #eeeeee;
     }
@@ -13,7 +13,7 @@
     .input-box {
       text-align: center;
       padding: 15px;
-      background: moccasin;
+      background: mediumseagreen;
     }
     
     h1 {
@@ -34,6 +34,7 @@
       font-size: 1.0rem;
       line-height: 1.45rem;
       border: none;
+      width: 60%;
     }
     
     .todo-list__item--complete {
@@ -46,7 +47,7 @@
       content: '\e801';
       display: inline-block;
       position: absolute;
-      left: 2px;
+      left: 2%;
     }
     
     #todo-list {
@@ -59,7 +60,7 @@
       font-size: 1.2rem;
       line-height: 2.0rem;
       position: relative;
-      padding-left: 20px;
+      padding-left: 5%;
       background: #EDEDED;
     }
     
@@ -71,7 +72,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      padding-right: 10px;
+      padding-right: 2%;
       z-index: 1;
     }
     
@@ -90,7 +91,7 @@
       top: 0;
       bottom: 0;
       margin: auto 0;
-      right: 12%;
+      right: 6%;
       z-index: 2;
     }
     
@@ -99,8 +100,9 @@
     }
     
     .revise::before {
+      font-family: 'fontello';
+      content: '\e802';
       display: inline-block;
-      content: 'R';
     }
     
     .todo-list--loading::after {
@@ -135,6 +137,7 @@
       display: block;
       padding: 17px;
       font-size: 25px;
+      border-bottom: 0.5px solid lightgray;
     }
     
     .exit-icon {
@@ -150,12 +153,15 @@
     /* todo-revise */
     
     #todo-revise {
-      padding: 25px 17px;
+      left: 0;
+      right: 0;
+      margin: 10px auto;
+      padding: 17px;
       font-size: 20px;
       display: block;
       color: #000;
+      width: 80%;
       border-top: 0.5px solid lightgray;
-      border-bottom: 0.5px solid lightgray;
     }
     /* Modal-Buttons */
     

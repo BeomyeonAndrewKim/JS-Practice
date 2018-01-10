@@ -4,11 +4,11 @@ const btn = document.querySelector('button');
 const todoList = document.querySelector('.container');
 btn.addEventListener('click', e => {
   firebase.auth().signInWithPopup(provider).then(function(result) {
-      var token = result.credential.accessToken;
-      var user = result.user;
-    })
-    // todoList.style.display = 'flex';
-    // btn.style.display = 'none';
+    var token = result.credential.accessToken;
+    var user = result.user;
+  })
+  todoList.style.display = 'flex';
+  btn.style.display = 'none';
 });
 //To Do List
 const addBtn = document.querySelector('#add-button');
@@ -79,6 +79,8 @@ async function refreshTodos() {
       await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ complete: !todo.complete });
       refreshTodos();
     })
+
+    //Modal 활용 수정 기능
     var modalBox = document.querySelector(".modal-box");
     var modalSelector = document.querySelector('.modal');
 
@@ -90,16 +92,15 @@ async function refreshTodos() {
       }, 300);
     }
     reviseButtonEl.addEventListener('click', async e => {
-      //Modal
       e.stopPropagation();
 
       modalBox.classList.add('active');
       modalBox.classList.remove('active-off');
       modalSelector.classList.add('modal-bg');
+
       let snapshotId = await firebase.database().ref(`/users/${uid}/todos/${todoId}`).once('value')
       let todoIdval = snapshotId.val();
       document.getElementById('todo-revise').value = todoIdval.title;
-
 
       modalBox.querySelector('.exit').addEventListener('click', e => {
         modalOff();
@@ -114,7 +115,6 @@ async function refreshTodos() {
         if (event.keyCode === 13) document.querySelector('.confirm').click();
       });
       document.querySelector('.confirm').addEventListener('click', async e => {
-        e.stopPropagation();
         await firebase.database().ref(`/users/${uid}/todos/${todoId}`).update({ title: document.getElementById('todo-revise').value });
         refreshTodos();
         modalOff();
