@@ -1,5 +1,17 @@
     @import url("/reset.css");
     @import url("/font/font.css");
+
+    /* show, hidden */
+
+    body .show{
+      display: flex;
+    }
+    body .hidden{
+      display: none;
+    }
+
+    /* Basic CSS */
+
     .container {
       margin: auto;
       display: none;
@@ -20,7 +32,9 @@
       font-size: 1.8rem;
       line-height: 2.5rem;
     }
-    
+
+    /* fieldset */
+
     fieldset button {
       margin-left: -5px;
       font-size: 1.0rem;
@@ -36,7 +50,9 @@
       border: none;
       width: 60%;
     }
-    
+
+    /* todo-list */
+
     .todo-list__item--complete {
       text-decoration-line: line-through;
       background: rgb(152, 207, 186) !important;
@@ -67,7 +83,9 @@
     #todo-list>div:hover {
       background: #ddcccc;
     }
-    
+
+    /* remove */
+
     .remove {
       position: absolute;
       top: 0;
@@ -85,7 +103,9 @@
       content: '\e800';
       display: inline-block;
     }
-    
+
+    /* revise */
+
     .revise {
       position: absolute;
       top: 0;
@@ -104,7 +124,7 @@
       content: '\e802';
       display: inline-block;
     }
-    
+    /* loading-indicator */
     .todo-list--loading::after {
       content: "";
       display: block;
